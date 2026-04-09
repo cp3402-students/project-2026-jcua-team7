@@ -1,0 +1,21 @@
+# Local environment secrets — never commit
+.env
+
+# Node dependencies (if using build tools in the theme)
+node_modules/
+tennisblast/node_modules/
+
+# Build output
+tennisblast/css/
+tennisblast/*.css.map
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Docker volumes are not committed — WordPress core lives there, not here
+# Do not add wp-admin/, wp-includes/, or wp-config.php — they are not in this repo
