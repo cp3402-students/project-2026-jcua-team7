@@ -9,7 +9,7 @@ A custom WordPress website built for **Tennis Blast Kalynda Chase**, a tennis co
 | Braedon Ross | [@username](https://github.com/username) | [Profile](https://linkedin.com/in/??) |
 | Bryn Baird | [@username](https://github.com/username) | [Profile](https://linkedin.com/in/??) |
 | Kirandeep Kaur | [@username](@kirandeep05kaur2005-blip) | [Profile](https://www.linkedin.com/in/kirandeep-kaur-920638326) |
-| Jack Norton Lovett | [@username](https://github.com/username) | [Profile](https://linkedin.com/in/??) |
+| Jack Norton Lovett | [@jack-lovett](https://github.com/jack-lovett) | [Profile](https://www.linkedin.com/in/jack-lovett-b20aa9330/) |
 
 ## Links
 
