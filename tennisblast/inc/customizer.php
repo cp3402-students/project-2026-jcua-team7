@@ -15,6 +15,33 @@ function tennisblast_customize_register( $wp_customize ) {
 	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
 	$wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
 
+	// Tennis Blast Settings section.
+	$wp_customize->add_section(
+		'tennisblast_settings',
+		array(
+			'title'    => esc_html__( 'Tennis Blast Settings', 'tennisblast' ),
+			'priority' => 30,
+		)
+	);
+
+	// Court booking URL.
+	$wp_customize->add_setting(
+		'tennisblast_booking_url',
+		array(
+			'default'           => '',
+			'sanitize_callback' => 'esc_url_raw',
+		)
+	);
+	$wp_customize->add_control(
+		'tennisblast_booking_url',
+		array(
+			'label'       => esc_html__( 'Court Booking URL', 'tennisblast' ),
+			'description' => esc_html__( 'URL for the "Book a Court" button in the header. Leave blank to hide the button.', 'tennisblast' ),
+			'section'     => 'tennisblast_settings',
+			'type'        => 'url',
+		)
+	);
+
 	if ( isset( $wp_customize->selective_refresh ) ) {
 		$wp_customize->selective_refresh->add_partial(
 			'blogname',

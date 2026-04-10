@@ -965,3 +965,248 @@ textarea {
 	margin-right: auto;
 	margin-bottom: 1.5em;
 }
+
+/*--------------------------------------------------------------
+# Tennis Blast Theme
+--------------------------------------------------------------*/
+
+/* Design Tokens
+--------------------------------------------- */
+:root {
+	--color-primary:    #1e5631;   /* dark green */
+	--color-accent:     #4caf50;   /* mid green — CTAs, hover */
+	--color-accent-dark:#388e3c;   /* darker green — button hover */
+	--color-header-bg:  #1a2e3a;   /* dark navy — header background */
+	--color-text:       #2c2c2c;
+	--color-text-light: #ffffff;
+	--color-bg-light:   #f5f5f5;
+	--color-border:     #e0e0e0;
+	--max-width:        1200px;
+	--header-height:    70px;
+}
+
+/* Base overrides
+--------------------------------------------- */
+body {
+	color: var(--color-text);
+}
+
+a {
+	color: var(--color-primary);
+}
+
+a:visited {
+	color: var(--color-primary);
+}
+
+a:hover,
+a:focus,
+a:active {
+	color: var(--color-accent);
+}
+
+/* Layout
+--------------------------------------------- */
+.site {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+#page {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+#primary {
+	flex: 1;
+}
+
+/* Header
+--------------------------------------------- */
+.site-header {
+	background-color: var(--color-header-bg);
+	position: sticky;
+	top: 0;
+	z-index: 1000;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.header-inner {
+	max-width: var(--max-width);
+	margin: 0 auto;
+	padding: 0 1.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: var(--header-height);
+}
+
+/* Branding */
+.site-branding {
+	display: flex;
+	align-items: center;
+	flex-shrink: 0;
+}
+
+.custom-logo-link img {
+	height: 50px;
+	width: auto;
+	display: block;
+}
+
+.site-logo-text {
+	color: var(--color-text-light);
+	font-size: 1.4rem;
+	font-weight: 700;
+	letter-spacing: 0.5px;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+.site-logo-text:hover,
+.site-logo-text:visited,
+.site-logo-text:focus {
+	color: var(--color-text-light);
+}
+
+/* Navigation — desktop
+--------------------------------------------- */
+.main-navigation {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	width: auto;
+}
+
+/* Override _s default hidden state */
+.main-navigation ul {
+	display: flex;
+	align-items: center;
+	gap: 0.25rem;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.main-navigation ul li {
+	position: relative;
+}
+
+.main-navigation ul li a {
+	border-radius: 4px;
+	color: var(--color-text-light);
+	display: block;
+	font-size: 0.95rem;
+	font-weight: 500;
+	letter-spacing: 0.3px;
+	padding: 0.45rem 0.85rem;
+	text-decoration: none;
+	transition: background-color 0.2s, color 0.2s;
+}
+
+.main-navigation ul li a:hover,
+.main-navigation ul li a:focus {
+	background-color: rgba(255, 255, 255, 0.1);
+	color: var(--color-accent);
+}
+
+.main-navigation ul li.current-menu-item > a,
+.main-navigation ul li.current-page-ancestor > a {
+	color: var(--color-accent);
+}
+
+/* Book a Court CTA button */
+.btn-book-court {
+	background-color: var(--color-accent);
+	border-radius: 4px;
+	color: var(--color-text-light) !important;
+	display: inline-block;
+	font-size: 0.875rem;
+	font-weight: 700;
+	letter-spacing: 0.5px;
+	padding: 0.5rem 1.1rem;
+	text-decoration: none;
+	text-transform: uppercase;
+	transition: background-color 0.2s;
+	white-space: nowrap;
+}
+
+.btn-book-court:hover,
+.btn-book-court:focus,
+.btn-book-court:visited {
+	background-color: var(--color-accent-dark);
+	color: var(--color-text-light) !important;
+}
+
+/* Mobile toggle button */
+.menu-toggle {
+	background: none;
+	border: 2px solid rgba(255, 255, 255, 0.4);
+	border-radius: 4px;
+	color: var(--color-text-light);
+	cursor: pointer;
+	display: none;
+	font-size: 1.3rem;
+	line-height: 1;
+	padding: 0.35rem 0.65rem;
+	transition: border-color 0.2s, color 0.2s;
+}
+
+.menu-toggle:hover {
+	border-color: var(--color-accent);
+	color: var(--color-accent);
+}
+
+/* Navigation — mobile
+--------------------------------------------- */
+@media screen and (max-width: 768px) {
+
+	.menu-toggle {
+		display: block;
+	}
+
+	.main-navigation {
+		background-color: var(--color-header-bg);
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+		flex-direction: column;
+		align-items: stretch;
+		gap: 0;
+		left: 0;
+		max-height: 0;
+		overflow: hidden;
+		padding: 0 1.5rem;
+		position: absolute;
+		right: 0;
+		top: var(--header-height);
+		transition: max-height 0.3s ease, padding 0.3s ease;
+	}
+
+	.main-navigation.toggled {
+		max-height: 400px;
+		padding: 0.75rem 1.5rem 1rem;
+	}
+
+	.main-navigation ul {
+		flex-direction: column;
+		gap: 0;
+		width: 100%;
+	}
+
+	.main-navigation ul li a {
+		border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+		border-radius: 0;
+		padding: 0.65rem 0;
+	}
+
+	.btn-book-court {
+		display: block;
+		margin-top: 0.75rem;
+		text-align: center;
+	}
+
+	.site-header {
+		position: relative;
+	}
+}
