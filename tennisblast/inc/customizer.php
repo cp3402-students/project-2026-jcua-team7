@@ -42,6 +42,58 @@ function tennisblast_customize_register( $wp_customize ) {
 		)
 	);
 
+	// Phone number.
+	$wp_customize->add_setting(
+		'tennisblast_phone',
+		array(
+			'default'           => '',
+			'sanitize_callback' => 'sanitize_text_field',
+		)
+	);
+	$wp_customize->add_control(
+		'tennisblast_phone',
+		array(
+			'label'   => esc_html__( 'Phone Number', 'tennisblast' ),
+			'section' => 'tennisblast_settings',
+			'type'    => 'text',
+		)
+	);
+
+	// Email address.
+	$wp_customize->add_setting(
+		'tennisblast_email',
+		array(
+			'default'           => '',
+			'sanitize_callback' => 'sanitize_email',
+		)
+	);
+	$wp_customize->add_control(
+		'tennisblast_email',
+		array(
+			'label'   => esc_html__( 'Email Address', 'tennisblast' ),
+			'section' => 'tennisblast_settings',
+			'type'    => 'email',
+		)
+	);
+
+	// Facebook URL.
+	$wp_customize->add_setting(
+		'tennisblast_facebook_url',
+		array(
+			'default'           => '',
+			'sanitize_callback' => 'esc_url_raw',
+		)
+	);
+	$wp_customize->add_control(
+		'tennisblast_facebook_url',
+		array(
+			'label'       => esc_html__( 'Facebook URL', 'tennisblast' ),
+			'description' => esc_html__( 'Leave blank to hide the Facebook link.', 'tennisblast' ),
+			'section'     => 'tennisblast_settings',
+			'type'        => 'url',
+		)
+	);
+
 	if ( isset( $wp_customize->selective_refresh ) ) {
 		$wp_customize->selective_refresh->add_partial(
 			'blogname',

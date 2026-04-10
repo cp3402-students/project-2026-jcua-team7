@@ -1210,3 +1210,136 @@ a:active {
 		position: relative;
 	}
 }
+
+/* Footer
+--------------------------------------------- */
+.site-footer {
+	background-color: var(--color-header-bg);
+	color: rgba(255, 255, 255, 0.75);
+	margin-top: auto;
+}
+
+.footer-inner {
+	max-width: var(--max-width);
+	margin: 0 auto;
+	padding: 3rem 1.5rem 2rem;
+	display: grid;
+	grid-template-columns: 2fr 1fr 1fr;
+	gap: 2.5rem;
+}
+
+.footer-heading {
+	color: var(--color-text-light);
+	font-size: 0.8rem;
+	font-weight: 700;
+	letter-spacing: 1.5px;
+	margin: 0 0 1rem;
+	text-transform: uppercase;
+}
+
+/* Footer branding column */
+.footer-site-name {
+	color: var(--color-text-light);
+	font-size: 1.2rem;
+	font-weight: 700;
+	margin: 0 0 0.5rem;
+	text-transform: uppercase;
+}
+
+.footer-tagline {
+	font-size: 0.875rem;
+	margin: 0 0 1.25rem;
+}
+
+.footer-logo img {
+	height: 50px;
+	width: auto;
+	margin-bottom: 1rem;
+	filter: brightness(0) invert(1);
+}
+
+.footer-social {
+	color: var(--color-accent);
+	display: inline-block;
+	font-size: 0.875rem;
+	font-weight: 600;
+	text-decoration: none;
+	transition: color 0.2s;
+}
+
+.footer-social:hover,
+.footer-social:focus {
+	color: var(--color-text-light);
+}
+
+/* Footer nav links */
+.footer-links #footer-menu {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.footer-links #footer-menu li {
+	margin-bottom: 0.5rem;
+}
+
+.footer-links #footer-menu li a {
+	color: rgba(255, 255, 255, 0.75);
+	font-size: 0.9rem;
+	text-decoration: none;
+	transition: color 0.2s;
+}
+
+.footer-links #footer-menu li a:hover,
+.footer-links #footer-menu li a:focus {
+	color: var(--color-accent);
+}
+
+/* Footer contact list */
+.footer-contact-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.footer-contact-list li {
+	margin-bottom: 0.6rem;
+	font-size: 0.9rem;
+}
+
+.footer-contact-list a {
+	color: rgba(255, 255, 255, 0.75);
+	text-decoration: none;
+	transition: color 0.2s;
+}
+
+.footer-contact-list a:hover,
+.footer-contact-list a:focus {
+	color: var(--color-accent);
+}
+
+/* Footer bottom bar */
+.footer-bottom {
+	border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-bottom-inner {
+	max-width: var(--max-width);
+	margin: 0 auto;
+	padding: 1rem 1.5rem;
+}
+
+.footer-bottom p {
+	color: rgba(255, 255, 255, 0.45);
+	font-size: 0.8rem;
+	margin: 0;
+}
+
+/* Footer responsive */
+@media screen and (max-width: 768px) {
+	.footer-inner {
+		grid-template-columns: 1fr;
+		gap: 2rem;
+		padding: 2rem 1.5rem;
+	}
+}
