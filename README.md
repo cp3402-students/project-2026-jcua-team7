@@ -8,7 +8,7 @@ A custom WordPress website built for **Tennis Blast Kalynda Chase**, a tennis co
 |------|--------|----------|
 | Braedon Ross | [@username](https://github.com/username) | [Profile](https://linkedin.com/in/??) |
 | Bryn Baird | [@username](https://github.com/username) | [Profile](https://linkedin.com/in/??) |
-| Kirandeep Kaur | [@username](https://github.com/username) | [Profile](https://linkedin.com/in/??) |
+| Kirandeep Kaur | [@username](@kirandeep05kaur2005-blip) | [Profile](https://www.linkedin.com/in/kirandeep-kaur-920638326) |
 | Jack Norton Lovett | [@username](https://github.com/username) | [Profile](https://linkedin.com/in/??) |
 
 ## Links
@@ -44,5 +44,9 @@ cd project-2026-jcua-team7
 cp .env.example .env
 docker compose up -d
 ```
+## Contribution by Kirandeep Kaur
 
+- Joined GitHub repository and reviewed project setup
+- Checked Discord communication and team updates
+- Ready to contribute to content, design, and testing
 Then open http://localhost:8080 to complete the WordPress install and activate the **Tennis Blast** theme.
