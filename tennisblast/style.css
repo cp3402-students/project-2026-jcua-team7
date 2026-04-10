@@ -1211,6 +1211,152 @@ a:active {
 	}
 }
 
+/* Hero
+--------------------------------------------- */
+.hero {
+	align-items: center;
+	background-color: var(--color-header-bg);
+	background-position: center;
+	background-size: cover;
+	display: flex;
+	justify-content: center;
+	min-height: 85vh;
+	position: relative;
+	text-align: center;
+}
+
+.hero-overlay {
+	background: linear-gradient(to bottom, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.7));
+	bottom: 0;
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+.hero-content {
+	max-width: 800px;
+	padding: 2rem 1.5rem;
+	position: relative;
+	z-index: 1;
+}
+
+.hero-tagline {
+	color: var(--color-text-light);
+	font-size: clamp(1.8rem, 5vw, 3rem);
+	font-weight: 800;
+	letter-spacing: 2px;
+	line-height: 1.2;
+	margin: 0 0 1.25rem;
+	text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+	text-transform: uppercase;
+}
+
+.hero-subtitle {
+	color: rgba(255, 255, 255, 0.88);
+	font-size: clamp(1rem, 2.5vw, 1.2rem);
+	line-height: 1.6;
+	margin: 0 0 2rem;
+	text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.btn-hero {
+	background-color: var(--color-accent);
+	border-radius: 4px;
+	color: var(--color-text-light) !important;
+	display: inline-block;
+	font-size: 1rem;
+	font-weight: 700;
+	letter-spacing: 1px;
+	padding: 0.9rem 2.5rem;
+	text-decoration: none;
+	text-transform: uppercase;
+	transition: background-color 0.2s, transform 0.15s;
+}
+
+.btn-hero:hover,
+.btn-hero:focus {
+	background-color: var(--color-accent-dark);
+	color: var(--color-text-light) !important;
+	transform: translateY(-2px);
+}
+
+/* Home page content (coaches, about, etc.)
+--------------------------------------------- */
+.home-content {
+	padding: 4rem 1.5rem;
+}
+
+.home-content-inner {
+	max-width: var(--max-width);
+	margin: 0 auto;
+}
+
+/* Court Booking CTA Strip
+--------------------------------------------- */
+.cta-strip {
+	background-color: var(--color-primary);
+	padding: 3rem 1.5rem;
+}
+
+.cta-strip-inner {
+	align-items: center;
+	display: flex;
+	gap: 2rem;
+	justify-content: space-between;
+	margin: 0 auto;
+	max-width: var(--max-width);
+}
+
+.cta-strip-heading {
+	color: var(--color-text-light);
+	font-size: 1.6rem;
+	margin: 0 0 0.25rem;
+}
+
+.cta-strip-text p {
+	color: rgba(255, 255, 255, 0.8);
+	font-size: 0.95rem;
+	margin: 0;
+}
+
+.btn-cta {
+	background-color: var(--color-text-light);
+	border-radius: 4px;
+	color: var(--color-primary) !important;
+	display: inline-block;
+	flex-shrink: 0;
+	font-size: 0.95rem;
+	font-weight: 700;
+	letter-spacing: 0.5px;
+	padding: 0.85rem 2rem;
+	text-decoration: none;
+	text-transform: uppercase;
+	transition: background-color 0.2s, color 0.2s;
+}
+
+.btn-cta:hover,
+.btn-cta:focus {
+	background-color: var(--color-accent);
+	color: var(--color-text-light) !important;
+}
+
+@media screen and (max-width: 768px) {
+	.hero {
+		min-height: 70vh;
+	}
+
+	.cta-strip-inner {
+		flex-direction: column;
+		text-align: center;
+	}
+
+	.btn-cta {
+		width: 100%;
+		text-align: center;
+	}
+}
+
 /* Footer
 --------------------------------------------- */
 .site-footer {

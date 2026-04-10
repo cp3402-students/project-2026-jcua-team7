@@ -42,6 +42,83 @@ function tennisblast_customize_register( $wp_customize ) {
 		)
 	);
 
+	// --- Hero Section ---
+	$wp_customize->add_section(
+		'tennisblast_hero',
+		array(
+			'title'    => esc_html__( 'Hero Section', 'tennisblast' ),
+			'priority' => 31,
+		)
+	);
+
+	$wp_customize->add_setting(
+		'tennisblast_hero_image',
+		array(
+			'default'           => '',
+			'sanitize_callback' => 'esc_url_raw',
+		)
+	);
+	$wp_customize->add_control(
+		new WP_Customize_Image_Control(
+			$wp_customize,
+			'tennisblast_hero_image',
+			array(
+				'label'   => esc_html__( 'Hero Background Image', 'tennisblast' ),
+				'section' => 'tennisblast_hero',
+			)
+		)
+	);
+
+	$wp_customize->add_setting(
+		'tennisblast_hero_tagline',
+		array(
+			'default'           => '',
+			'sanitize_callback' => 'sanitize_text_field',
+			'transport'         => 'postMessage',
+		)
+	);
+	$wp_customize->add_control(
+		'tennisblast_hero_tagline',
+		array(
+			'label'   => esc_html__( 'Hero Tagline', 'tennisblast' ),
+			'section' => 'tennisblast_hero',
+			'type'    => 'text',
+		)
+	);
+
+	$wp_customize->add_setting(
+		'tennisblast_hero_subtitle',
+		array(
+			'default'           => '',
+			'sanitize_callback' => 'sanitize_textarea_field',
+			'transport'         => 'postMessage',
+		)
+	);
+	$wp_customize->add_control(
+		'tennisblast_hero_subtitle',
+		array(
+			'label'   => esc_html__( 'Hero Subtitle', 'tennisblast' ),
+			'section' => 'tennisblast_hero',
+			'type'    => 'textarea',
+		)
+	);
+
+	$wp_customize->add_setting(
+		'tennisblast_hero_button_text',
+		array(
+			'default'           => 'Get Started',
+			'sanitize_callback' => 'sanitize_text_field',
+		)
+	);
+	$wp_customize->add_control(
+		'tennisblast_hero_button_text',
+		array(
+			'label'   => esc_html__( 'Hero Button Text', 'tennisblast' ),
+			'section' => 'tennisblast_hero',
+			'type'    => 'text',
+		)
+	);
+
 	// Phone number.
 	$wp_customize->add_setting(
 		'tennisblast_phone',
