@@ -19,6 +19,7 @@ services:
     volumes:
       - wordpress_data:/var/www/html
       - ./tennisblast:/var/www/html/wp-content/themes/tennisblast
+      - ./content/uploads:/var/www/html/wp-content/uploads
     environment:
       WORDPRESS_DB_HOST: db
       WORDPRESS_DB_NAME: ${MYSQL_DATABASE:-wordpress}

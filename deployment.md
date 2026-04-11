@@ -1,20 +1,16 @@
 # Deployment
 
-This document describes our development and deployment workflow. A new team member should be able to follow these instructions from scratch, make a change, and push it through all three environments.
+This document describes our development and deployment workflow. A new team member should be able to follow these instructions from scratch, get an identical local site, make a change, and push it through all three environments.
 
 ## Environments
 
 | Environment | Purpose | URL |
 |-------------|---------|-----|
 | Local | Active development | http://localhost:8080 |
-| Staging | Review before going live | [URL — fill in] |
-| Production | Live public site | [URL — fill in] |
+| Staging | Review before going live | [URL — fill in once AWS is set up] |
+| Production | Live public site | [URL — fill in once AWS is set up] |
 
 Changes flow: **Local → Staging → Production**. Never edit files directly on staging or production.
-
-## Workflow Summary
-
-We use GitHub Flow: all changes happen on a feature branch, reviewed via pull request, merged to `main`. Deployments to staging and production are triggered from `main`.
 
 ---
 
@@ -22,64 +18,81 @@ We use GitHub Flow: all changes happen on a feature branch, reviewed via pull re
 
 **Requirements:** [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed and running.
 
+### First-time setup
+
 1. Clone the repository:
    ```bash
    git clone https://github.com/cp3402-students/project-2026-jcua-team7.git
    cd project-2026-jcua-team7
    ```
 
-2. Copy the environment file:
-   ```bash
-   cp .env.example .env
-   ```
-   The defaults in `.env` work as-is for local development. Do not commit `.env`.
-
-3. Start the containers:
+2. Start the containers:
    ```bash
    docker compose up -d
    ```
+   WordPress will be at http://localhost:8080. Wait ~30 seconds for it to initialise.
 
-4. Open http://localhost:8080 and complete the WordPress installation (takes ~30 seconds on first run).
-   - Site title: Tennis Blast
-   - Create an admin username and password of your choice (local only)
+3. Complete the WordPress install at http://localhost:8080/wp-admin/install.php:
+   - Site title: `Tennis Blast`
+   - Username: `admin`
+   - Password: anything you like (local only)
+   - Email: anything
 
-5. In WordPress Admin → Appearance → Themes, activate **Tennis Blast**.
+4. Import the database (restores all pages, content, media, and theme settings):
+   ```bash
+   bash bin/setup.sh
+   ```
+   This script:
+   - Imports `tennisblast-local.sql` into MySQL
+   - Activates the `tennisblast` theme via WP-CLI
+   - Sets up navigation menus
 
-6. Import the site content: go to Tools → Import → WordPress, and import `docs/client-content/tennis-blast-content.docx` [or the XML export once one exists].
+5. Open http://localhost:8080 — you should see the full Tennis Blast site.
 
-7. Assign menus under Appearance → Menus if they are not set automatically.
+> **Media files** are tracked in `content/uploads/` and mounted automatically by Docker Compose. No manual upload step needed.
 
 **phpMyAdmin** is available at http://localhost:8081 (user: `wordpress`, password: `wordpress`).
 
-To stop the environment:
-```bash
-docker compose down
-```
+### Stopping and restarting
 
-To stop and delete all data (fresh install):
 ```bash
+# Stop containers (data is preserved)
+docker compose down
+
+# Start again — no setup needed, data persists in Docker volumes
+docker compose up -d
+
+# Full reset (deletes all data — requires re-running setup.sh)
 docker compose down -v
+docker compose up -d
+bash bin/setup.sh
 ```
 
 ---
 
 ## Making and Committing Changes
 
-All theme files live in `tennisblast/`. WordPress core is not in this repo.
+All theme files live in `tennisblast/`. Changes appear live at http://localhost:8080 without restarting Docker.
 
 1. Create a branch:
    ```bash
    git checkout -b feature/short-description
    ```
 
-2. Edit files in `tennisblast/`. Changes appear immediately at http://localhost:8080 — no restart needed.
+2. Edit files in `tennisblast/`. Save and refresh the browser to see changes.
 
-3. Test your changes (see [Testing](#testing)).
+3. If you upload new images or change WordPress content (pages, menus, theme mods), export the database and commit it:
+   ```bash
+   docker exec groupassignment-db-1 \
+     mysqldump -u wordpress -pwordpress wordpress > tennisblast-local.sql
+   git add tennisblast-local.sql content/uploads/
+   git commit -m "Update database export with new content"
+   ```
 
-4. Stage and commit with a clear, imperative-mood message:
+4. Commit theme file changes:
    ```bash
    git add tennisblast/
-   git commit -m "Add hero banner template to front-page.php"
+   git commit -m "Add hero banner to front-page.php"
    ```
 
 5. Push and open a pull request to `main`:
@@ -95,24 +108,24 @@ All theme files live in `tennisblast/`. WordPress core is not in this repo.
 
 Before pushing to staging, verify:
 
-- [ ] Theme activates without errors on a clean WordPress install (`docker compose down -v && docker compose up -d`)
+- [ ] Theme activates without errors on a clean install
 - [ ] All pages render correctly at http://localhost:8080
-- [ ] No PHP errors or warnings in the browser (debug mode is on by default in Docker)
+- [ ] No PHP errors or warnings in the browser (debug mode is on in Docker)
 - [ ] Responsive layout works at mobile (375px), tablet (768px), and desktop (1280px)
 - [ ] No hard-coded URLs, IDs, or client-specific text in template files
-- [ ] Theme Unit Test Data passes (see `theme.md` for instructions)
 
 ---
 
 ## Deployment to Staging
 
-[Describe your chosen deployment method once the staging server is set up — e.g., FTP, SSH rsync, or a plugin like WP Pusher]
+[Fill in once AWS Lightsail is set up]
 
-Example steps (update once decided):
-1. Merge your PR to `main`.
-2. Deploy the `tennisblast/` theme folder to the staging server's `wp-content/themes/` directory.
-3. Verify the change at the staging URL.
-4. Post confirmation in the team Slack/Discord channel.
+Planned approach:
+1. Merge PR to `main`.
+2. SSH into the staging server and pull the latest theme files.
+3. Import `tennisblast-local.sql` on the staging database.
+4. Run `wp search-replace 'http://localhost:8080' 'https://staging-url'` to fix URLs.
+5. Verify the change at the staging URL.
 
 ---
 
@@ -121,19 +134,14 @@ Example steps (update once decided):
 Production deploys only after the team has reviewed and approved the staging version.
 
 1. Confirm staging approval in the team channel.
-2. Deploy to production using the same method as staging, pointing at the production server.
+2. Repeat the staging deploy steps pointing at the production server.
 3. Verify the live site.
-4. Post confirmation in the team channel.
 
 ---
 
-## Project Management Integration
+## Project Management
 
 - Project board: https://trello.com/b/69bfd3fe/cp3402-2026-1-project
 - Before starting any task, move the Trello card to **In Progress** and assign yourself.
-- Reference the card in your PR description.
+- Reference the Trello card in your PR description.
 - Move the card to **Done** when the change is live on staging.
-
-## Communication
-
-Team communication happens in [Slack channel / Discord — fill in link]. Post updates when you start a branch, open a PR, or deploy to staging or production.
