@@ -7,8 +7,8 @@ This document describes our development and deployment workflow. A new team memb
 | Environment | Purpose | URL |
 |-------------|---------|-----|
 | Local | Active development | http://localhost:8080 |
-| Staging | Review before going live | [URL — fill in once AWS is set up] |
-| Production | Live public site | [URL — fill in once AWS is set up] |
+| Staging | Review before going live | http://209.38.23.24:8080 |
+| Production | Live public site | http://170.64.239.20:8080 |
 
 Changes flow: **Local → Staging → Production**. Never edit files directly on staging or production.
 
@@ -113,18 +113,17 @@ All theme files live in `tennisblast/`. Changes appear live at http://localhost:
 6. Get at least one team member to review the PR before merging.
 
 ---
+## Testing Summary
 
-## Testing
+The website was tested across multiple pages.
 
-Before pushing to staging, verify:
+- Navigation menu is working correctly
+- Images are loading properly
+- Layout is consistent across pages
+- Minor issues found in header size and image cropping
 
-- [ ] Theme activates without errors on a clean install
-- [ ] All pages render correctly at http://localhost:8080
-- [ ] No PHP errors or warnings in the browser (debug mode is on in Docker)
-- [ ] Responsive layout works at mobile (375px), tablet (768px), and desktop (1280px)
-- [ ] No hard-coded URLs, IDs, or client-specific text in template files
+Overall, the website is functioning well and ready for staging/production. 
 
----
 
 ## Deployment to Staging
 
