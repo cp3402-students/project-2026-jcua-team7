@@ -89,6 +89,11 @@ All scripts and styles are registered in `functions.php` using `wp_enqueue_scrip
 | [e.g., No page builder] | [Assignment requirement; keeps theme portable] |
 | [Add decisions as the project progresses] | |
 
+## Design Decisions
+
+We used green colours to match the tennis theme.
+Simple fonts are used for readability.
+The layout is clean and easy for users to navigate.
 ## Non-Obvious Behaviour
 
 - [e.g., The homepage hero image is set via the Customizer under "Homepage Settings"]
