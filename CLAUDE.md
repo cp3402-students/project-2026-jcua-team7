@@ -65,3 +65,37 @@ Local → Staging → Production via GitHub Flow (feature branches → PR to `ma
 - **Classes** — Hot Shots (kids), Squad Training, Private Classes, Tournament Travel
 - **Social Tennis** — fixtures schedule, court hire info
 - **Contact** — form + link to play.tennis.com.au booking
+
+## Marking Gap Tracker
+
+Update this section whenever a gap is resolved. Criteria are from the CP3402 assignment rubric.
+
+| Criterion | Weight | Status | Notes |
+|---|---|---|---|
+| Publishing | 10% | ❌ Incomplete | No staging or production server yet; `project.html` unfilled |
+| Content | 5% | ⚠️ Unverified | Media uploaded; client DOCX text not confirmed on all pages |
+| Goal-Driven | 5% | ⚠️ Partial | Homepage CTAs exist; inner pages (Classes, Social Tennis, Contact) need CTAs |
+| Information Architecture | 5% | ⚠️ Unverified | Pages exist; nav structure needs confirming |
+| Information Design | 5% | ⚠️ Unverified | Images uploaded but not confirmed placed in all page content |
+| Interface Design | 15% | ⚠️ Partial | Brand colour palette applied; typography and visual polish still needed |
+| Theme | 10% | ⚠️ Partial | No hard-coded content ✓; conventions and design decisions documented in `theme.md` |
+| Version Control | 10% | ❌ At risk | Only 1–2 team members committing; all 4 must make meaningful commits |
+| Project Management | 15% | ⚠️ Unverified | Trello board exists; tasks must be defined, assigned, and updated throughout |
+| Documentation | 20% | ⚠️ Partial | `deployment.md` staging/production blank; `theme.md` and `site.md` have placeholders |
+
+### Status key
+- ✅ Done — meets exemplary standard
+- ⚠️ Partial — in progress or unverified
+- ❌ Incomplete — not started or critically missing
+
+### Priority actions
+1. ❌ Set up staging + production hosting (Publishing 10%)
+2. ❌ Fill in `project.html` (Publishing 10%)
+3. ❌ All 4 team members make meaningful commits (Version Control 10%)
+4. ✅ Fill in `theme.md` — conventions, design decisions, non-obvious behaviour documented
+5. ⚠️ Improve visual design — typography, spacing, imagery (Interface Design 15%) — colour palette done
+6. ⚠️ Add CTAs to Classes, Social Tennis, Contact pages (Goal-Driven 5%)
+7. ⚠️ Verify all client content is on all pages with images (Content 5%)
+8. ⚠️ Complete `deployment.md` staging/production steps once hosting is live (Documentation 20%)
+9. ⚠️ Verify navigation structure and page order (IA 5%)
+10. ⚠️ Keep Trello board updated with assigned tasks throughout (PM 15%)
