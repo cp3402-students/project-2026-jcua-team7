@@ -21,6 +21,9 @@ A custom WordPress website built for **Tennis Blast Kalynda Chase**, a tennis co
 | Staging site | [URL — fill in] |
 | Team channel | [Slack/Discord link — fill in] |
 
+Staging: http://209.38.23.24:8080/
+Production: http://170.64.239.20:8080/
+
 ## Client
 
 **Tennis Blast Kalynda Chase** — [kctennisblast.com.au](https://www.kctennisblast.com.au)
