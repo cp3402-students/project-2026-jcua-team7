@@ -12,6 +12,19 @@ This document describes our development and deployment workflow. A new team memb
 
 Changes flow: **Local → Staging → Production**. Never edit files directly on staging or production.
 
+| Branch     | Deploys to     | Purpose                                        |
+| ---------- | -------------- | ---------------------------------------------- |
+| `feature/*`| Local only     | Active development — each dev works here       |
+| `staging`  | Staging server | Integration and review before going live       |
+| `main`     | Production     | Live public site — only merged from `staging`  |
+
+**Rules:**
+
+- Never commit directly to `staging` or `main`
+- All new work starts as a `feature/` branch off `staging`
+- Open a PR from your feature branch into `staging` for team review
+- Once staging is verified, open a PR from `staging` into `main` to go live
+
 ---
 
 ## Local Environment Setup
@@ -30,24 +43,20 @@ Changes flow: **Local → Staging → Production**. Never edit files directly on
    ```bash
    docker compose up -d
    ```
-   WordPress will be at http://localhost:8080. Wait ~30 seconds for it to initialise.
 
-3. Complete the WordPress install at http://localhost:8080/wp-admin/install.php:
-   - Site title: `Tennis Blast`
-   - Username: `admin`
-   - Password: anything you like (local only)
-   - Email: anything
-
-4. Import the database (restores all pages, content, media, and theme settings):
+3. Run the setup script:
    ```bash
    bash bin/setup.sh
    ```
    This script:
-   - Imports `tennisblast-local.sql` into MySQL
-   - Activates the `tennisblast` theme via WP-CLI
+   - Waits for WordPress to be ready
+   - Imports `tennisblast-local.sql` (all pages, content, theme settings)
+   - Installs WordPress core with shared credentials (`admin` / `password`)
+   - Activates the `tennisblast` theme
    - Sets up navigation menus
 
-5. Open http://localhost:8080 — you should see the full Tennis Blast site.
+4. Open http://localhost:8080 — you should see the full Tennis Blast site.
+   Log in at http://localhost:8080/wp-admin with username `admin` and password `password`.
 
 > **Media files** are tracked in `content/uploads/` and mounted automatically by Docker Compose. No manual upload step needed.
 
@@ -62,10 +71,8 @@ docker compose down
 # Start again — no setup needed, data persists in Docker volumes
 docker compose up -d
 
-# Full reset (deletes all data — requires re-running setup.sh)
-docker compose down -v
-docker compose up -d
-bash bin/setup.sh
+# Full reset (wipes all data and re-provisions from scratch)
+docker compose down -v && docker compose up -d && bash bin/setup.sh
 ```
 
 ---
@@ -83,8 +90,11 @@ All theme files live in `tennisblast/`. Changes appear live at http://localhost:
 
 3. If you upload new images or change WordPress content (pages, menus, theme mods), export the database and commit it:
    ```bash
-   docker exec groupassignment-db-1 \
-     mysqldump -u wordpress -pwordpress wordpress > tennisblast-local.sql
+   docker compose exec db \
+     mysqldump -u wordpress -pwordpress wordpress \
+     --ignore-table=wordpress.wp_users \
+     --ignore-table=wordpress.wp_usermeta \
+     > tennisblast-local.sql
    git add tennisblast-local.sql content/uploads/
    git commit -m "Update database export with new content"
    ```
@@ -95,7 +105,7 @@ All theme files live in `tennisblast/`. Changes appear live at http://localhost:
    git commit -m "Add hero banner to front-page.php"
    ```
 
-5. Push and open a pull request to `main`:
+5. Push and open a pull request to `staging`:
    ```bash
    git push origin feature/short-description
    ```
