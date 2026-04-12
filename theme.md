@@ -59,10 +59,11 @@ tennisblast/
 ## Conventions
 
 - **PHP:** Follows [WordPress PHP Coding Standards](https://developer.wordpress.org/coding-standards/wordpress-coding-standards/php/). Tabs for indentation.
-- **CSS:** [Describe your approach — e.g., BEM naming, mobile-first, SCSS]
-- **JavaScript:** [Vanilla JS / jQuery — describe approach and where scripts are registered]
-- **Template tags:** Custom template tags live in `inc/template-tags.php`.
-- **No hard-coded content:** All text, IDs, and URLs are pulled from WordPress or defined via constants/options.
+- **CSS:** Mobile-first. Custom properties (CSS variables) defined in `:root` in `style.css` under the `/* Design Tokens */` section — use these for all colours, never hardcode hex values in component rules.
+- **SCSS:** Source files in `sass/`. Compiled output is `style.css`. Variables are in `sass/abstracts/variables/`. Do not edit `style.css` structure sections directly — edit the relevant SCSS partial and recompile.
+- **JavaScript:** Vanilla JS only. Scripts registered in `functions.php` via `wp_enqueue_scripts`. Navigation toggle is in `js/navigation.js`.
+- **Template tags:** Custom template tag functions live in `inc/template-tags.php`.
+- **No hard-coded content:** All text, IDs, and URLs are pulled from WordPress or theme mods — never written directly into template files.
 
 ## Adding a New Template
 
@@ -85,15 +86,23 @@ All scripts and styles are registered in `functions.php` using `wp_enqueue_scrip
 
 | Decision | Rationale |
 |----------|-----------|
-| [e.g., Mobile-first CSS] | [e.g., Majority of client's audience is on mobile] |
-| [e.g., No page builder] | [Assignment requirement; keeps theme portable] |
-| [Add decisions as the project progresses] | |
+| Mobile-first CSS | Primary audience is parents searching for kids' activities on phones |
+| No page builder (no Elementor/Nicepage) | Assignment requirement; keeps theme fully portable and reusable |
+| Dark forest green `#1b4d1b` as primary colour | Directly from the "TENNIS BLAST" logo wordmark — ensures brand consistency |
+| Lime green `#6cc44a` as accent | Taken from the logo swoosh gradient highlight |
+| Red `#c0392b` for CTA buttons | Taken from the Head Coach shirt and brand signage starburst — creates strong contrast against green and draws the eye to primary actions |
+| Gold `#f5c518` as highlight colour | Taken from the yellow/gold burst background on the client's physical signage |
+| Near-black green `#0f2410` for header and footer | Dark version of the primary green — keeps header/footer on-brand without using a generic navy or black |
+| All content via WordPress, not templates | Theme reusability requirement — enables markers to test with Theme Unit Test Data |
+| Hero image and booking URL via Customizer | Keeps site-specific config out of code; a new site using this theme can set its own hero |
 
 ## Non-Obvious Behaviour
 
-- [e.g., The homepage hero image is set via the Customizer under "Homepage Settings"]
-- [e.g., Navigation menus must be assigned in Appearance → Menus after theme activation]
-- [Add notes here as you discover them]
+- The homepage hero image, tagline, subtitle, button text, and court booking URL are all set via **Appearance → Customize → Homepage Settings** — they are not in the page editor.
+- Navigation menus must be assigned after theme activation: **Appearance → Menus** — assign "Primary Navigation" to the Header location and "Footer Links" to the Footer location.
+- The footer logo is rendered with `filter: brightness(0) invert(1)` in CSS so the dark green logo appears white on the dark footer background — do not replace the logo file with a white version.
+- The `front-page.php` template is only used when a static front page is set in **Settings → Reading → Your homepage displays → A static page**. Without this setting, WordPress falls back to `index.php`.
+- Red (`--color-cta`) is intentionally reserved for primary action buttons only — do not use it for decorative elements, as it would dilute its attention-drawing effect.
 
 ## Theme Test Data
 
