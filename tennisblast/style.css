@@ -1927,8 +1927,3 @@ a:active {
 		width: 100%;
 	}
 }
-
-/* Contact page — spacing between Book Online button and Sponsors section */
-.entry-content .wp-block-buttons {
-	margin-bottom: 2.5rem;
-}
