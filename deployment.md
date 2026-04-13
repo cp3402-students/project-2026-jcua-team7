@@ -113,6 +113,19 @@ All theme files live in `tennisblast/`. Changes appear live at http://localhost:
 6. Get at least one team member to review the PR before merging.
 
 ---
+
+## Testing
+
+Before pushing to staging, verify:
+
+- [ ] Theme activates without errors on a clean install
+- [ ] All pages render correctly at http://localhost:8080
+- [ ] No PHP errors or warnings in the browser (debug mode is on in Docker)
+- [ ] Responsive layout works at mobile (375px), tablet (768px), and desktop (1280px)
+- [ ] No hard-coded URLs, IDs, or client-specific text in template files
+
+---
+
 ## Testing Summary
 
 The website was tested across multiple pages.
@@ -122,8 +135,9 @@ The website was tested across multiple pages.
 - Layout is consistent across pages
 - Minor issues found in header size and image cropping
 
-Overall, the website is functioning well and ready for staging/production. 
+Overall, the website is functioning well and ready for staging/production.
 
+---
 
 ## Deployment to Staging
 
