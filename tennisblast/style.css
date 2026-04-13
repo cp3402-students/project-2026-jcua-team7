@@ -1401,6 +1401,30 @@ a:active {
 	transform: translateY(-2px);
 }
 
+/* WordPress block buttons — global style (#15: fix low-contrast button)
+   Forces all wp-block-button__link elements to use CTA red + white text
+   regardless of WordPress default or editor colour overrides.
+--------------------------------------------- */
+.wp-block-button__link,
+.wp-element-button {
+	background-color: var(--color-cta) !important;
+	border-radius: 4px !important;
+	color: var(--color-text-light) !important;
+	font-weight: 700;
+	letter-spacing: 0.5px;
+	text-transform: uppercase;
+	transition: background-color 0.2s, transform 0.15s;
+}
+
+.wp-block-button__link:hover,
+.wp-block-button__link:focus,
+.wp-element-button:hover,
+.wp-element-button:focus {
+	background-color: var(--color-cta-hover) !important;
+	color: var(--color-text-light) !important;
+	transform: translateY(-2px);
+}
+
 /* Home page content (coaches, about, etc.)
 --------------------------------------------- */
 .home-content {
