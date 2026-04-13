@@ -1609,3 +1609,114 @@ a:active {
 		padding: 2rem 1.5rem;
 	}
 }
+
+/* Classes page — program sections
+--------------------------------------------- */
+
+/* Section call-to-action heading ("GET INVOLVED! THE COURT IS CALLING") */
+.entry-content > .wp-block-heading {
+	border-bottom: 4px solid var(--color-gold);
+	color: var(--color-primary);
+	font-size: clamp(1.4rem, 3vw, 2rem);
+	font-weight: 800;
+	letter-spacing: 1px;
+	margin-bottom: 2.5rem;
+	padding-bottom: 0.75rem;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+/* Reset the generic column card look inside program sections */
+.program-section .wp-block-column {
+	background-color: transparent;
+	border-radius: 0;
+	overflow: visible;
+	padding: 0 1.25rem;
+}
+
+/* Image column — no side padding, image fills the column */
+.program-section .wp-block-column:has(.wp-block-image) {
+	padding: 0;
+}
+
+.program-section .wp-block-image {
+	margin: 0;
+}
+
+.program-section .wp-block-image img {
+	border-radius: 8px;
+	display: block;
+	height: 320px;
+	margin-bottom: 0;
+	max-height: none;
+	object-fit: cover;
+	width: 100%;
+}
+
+/* Program section heading */
+.program-section h3 {
+	border-bottom: 3px solid var(--color-accent);
+	color: var(--color-primary);
+	display: inline-block;
+	font-size: 1.4rem;
+	font-weight: 800;
+	margin-bottom: 1rem;
+	margin-top: 0;
+	padding-bottom: 0.4rem;
+}
+
+/* Bullet list within program sections */
+.program-section .wp-block-list {
+	margin: 0 0 1rem;
+	padding-left: 1.5rem;
+}
+
+.program-section .wp-block-list li {
+	line-height: 1.6;
+	margin-bottom: 0.35rem;
+}
+
+/* Pricing table */
+.program-section .wp-block-table {
+	margin: 1.25rem 0;
+	overflow-x: auto;
+}
+
+.program-section .wp-block-table table {
+	border-collapse: collapse;
+	font-size: 0.9rem;
+	width: 100%;
+}
+
+.program-section .wp-block-table thead th {
+	background-color: var(--color-primary);
+	color: var(--color-text-light);
+	font-weight: 700;
+	padding: 0.6rem 1rem;
+	text-align: left;
+}
+
+.program-section .wp-block-table tbody tr:nth-child(even) {
+	background-color: var(--color-bg-light);
+}
+
+.program-section .wp-block-table tbody td {
+	border-bottom: 1px solid var(--color-border);
+	padding: 0.6rem 1rem;
+}
+
+/* Separator between program sections */
+.entry-content .wp-block-separator {
+	border-color: var(--color-border);
+	margin: 0.5rem 0 0;
+}
+
+@media screen and (max-width: 768px) {
+	.program-section .wp-block-image img {
+		height: 220px;
+	}
+
+	.program-section .wp-block-column {
+		padding: 0;
+	}
+}
