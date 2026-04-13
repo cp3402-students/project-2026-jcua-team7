@@ -126,19 +126,6 @@ Before pushing to staging, verify:
 
 ---
 
-## Testing Summary
-
-The website was tested across multiple pages.
-
-- Navigation menu is working correctly
-- Images are loading properly
-- Layout is consistent across pages
-- Minor issues found in header size and image cropping
-
-Overall, the website is functioning well and ready for staging/production.
-
----
-
 ## Deployment to Staging
 
 [Fill in once AWS Lightsail is set up]
