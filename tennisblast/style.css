@@ -972,11 +972,25 @@ textarea {
 
 /* Design Tokens
 --------------------------------------------- */
+/*
+ * Brand palette derived from the Tennis Blast logo and client signage.
+ *
+ * primary       — dark forest green from the "TENNIS BLAST" logo wordmark
+ * accent        — lime green from the logo swoosh gradient highlight
+ * accent-dark   — deeper lime for hover states
+ * cta           — red from the Head Coach shirt and brand signage starburst
+ * cta-hover     — darker red for button hover
+ * gold          — yellow/gold from the signage background burst
+ * header-bg     — near-black green for header and footer (dark version of primary)
+ */
 :root {
-	--color-primary:    #1e5631;   /* dark green */
-	--color-accent:     #4caf50;   /* mid green — CTAs, hover */
-	--color-accent-dark:#388e3c;   /* darker green — button hover */
-	--color-header-bg:  #1a2e3a;   /* dark navy — header background */
+	--color-primary:    #1b4d1b;   /* dark forest green — logo wordmark */
+	--color-accent:     #6cc44a;   /* lime green — logo swoosh highlight */
+	--color-accent-dark:#4ea032;   /* deeper lime — hover states */
+	--color-cta:        #c0392b;   /* red — CTAs, primary action buttons */
+	--color-cta-hover:  #962d22;   /* dark red — CTA hover */
+	--color-gold:       #f5c518;   /* gold — highlight, badges */
+	--color-header-bg:  #0f2410;   /* near-black green — header and footer */
 	--color-text:       #2c2c2c;
 	--color-text-light: #ffffff;
 	--color-bg-light:   #f5f5f5;

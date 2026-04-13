@@ -1,20 +1,42 @@
-$color__background-body: #fff;
-$color__background-screen: #f1f1f1;
-$color__background-hr: #ccc;
-$color__background-button: #e6e6e6;
-$color__background-pre: #eee;
-$color__background-ins: #fff9c0;
+// Brand palette — Tennis Blast Kalynda Chase
+// Derived from the logo PNG and client signage photography.
+//
+// primary       — dark forest green from the "TENNIS BLAST" logo wordmark
+// accent        — lime green from the logo swoosh gradient highlight
+// accent-dark   — deeper lime for hover states
+// cta           — red from the Head Coach shirt and brand signage starburst
+// cta-hover     — darker red for button hover
+// gold          — yellow/gold from the signage background burst
+// header-bg     — near-black green for header and footer
 
-$color__text-screen: #21759b;
-$color__text-input: #666;
-$color__text-input-focus: #111;
-$color__link: #4169e1; //royalblue
-$color__link-visited: #800080; //purple
-$color__link-hover: #191970; //midnightblue
-$color__text-main: #404040;
+$color__brand-primary:    #1b4d1b;
+$color__brand-accent:     #6cc44a;
+$color__brand-accent-dark:#4ea032;
+$color__brand-cta:        #c0392b;
+$color__brand-cta-hover:  #962d22;
+$color__brand-gold:       #f5c518;
+$color__brand-header-bg:  #0f2410;
 
-$color__border-button: #ccc #ccc #bbb;
-$color__border-button-hover: #ccc #bbb #aaa;
-$color__border-button-focus: #aaa #bbb #bbb;
-$color__border-input: #ccc;
-$color__border-abbr: #666;
+// Base
+$color__background-body:  #ffffff;
+$color__background-screen:#f5f5f5;
+$color__background-hr:    #e0e0e0;
+$color__background-button:#e6e6e6;
+$color__background-pre:   #f5f5f5;
+$color__background-ins:   #fff9c0;
+
+$color__text-main:        #2c2c2c;
+$color__text-light:       #ffffff;
+$color__text-screen:      #21759b;
+$color__text-input:       #666666;
+$color__text-input-focus: #111111;
+
+$color__link:             #1b4d1b;
+$color__link-visited:     #4ea032;
+$color__link-hover:       #6cc44a;
+
+$color__border-button:      #ccc #ccc #bbb;
+$color__border-button-hover:#ccc #bbb #aaa;
+$color__border-button-focus:#aaa #bbb #bbb;
+$color__border-input:       #cccccc;
+$color__border-abbr:        #666666;
