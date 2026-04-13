@@ -9,9 +9,9 @@ SQL_FILE="$PROJECT_ROOT/tennisblast-local.sql"
 WP_CLI_URL="https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar"
 WP_CLI_PHAR="$PROJECT_ROOT/wp-cli.phar"
 
-# Derive container names from docker compose — works regardless of folder name
-CONTAINER=$(docker compose -f "$PROJECT_ROOT/docker-compose.yml" ps -q wordpress 2>/dev/null | xargs docker inspect --format '{{.Name}}' 2>/dev/null | sed 's|/||')
-DB_CONTAINER=$(docker compose -f "$PROJECT_ROOT/docker-compose.yml" ps -q db 2>/dev/null | xargs docker inspect --format '{{.Name}}' 2>/dev/null | sed 's|/||')
+# Container names are fixed by the `name: tennisblast` in docker-compose.yml
+CONTAINER="tennisblast-wordpress-1"
+DB_CONTAINER="tennisblast-db-1"
 
 echo "→ Checking containers are running..."
 if [ -z "$CONTAINER" ]; then
