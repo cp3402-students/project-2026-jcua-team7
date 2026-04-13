@@ -1279,16 +1279,7 @@ a:active {
 	margin: 0;
 }
 
-.entry-content h2 {
-	color: var(--color-primary);
-	font-size: 1.6rem;
-	margin-top: 2.5rem;
-}
-
-.entry-content h3 {
-	color: var(--color-header-bg);
-	font-size: 1.2rem;
-}
+/* entry-content h2 and h3 base styles are further down, scoped per page type */
 
 .entry-content img {
 	border-radius: 6px;
@@ -1613,8 +1604,8 @@ a:active {
 /* Classes page — program sections
 --------------------------------------------- */
 
-/* Section call-to-action heading ("GET INVOLVED! THE COURT IS CALLING") */
-.entry-content > .wp-block-heading {
+/* Page call-to-action h2 ("GET INVOLVED! THE COURT IS CALLING", "GET YOUR RACQUET ON!") */
+.entry-content > h2.wp-block-heading {
 	border-bottom: 4px solid var(--color-gold);
 	color: var(--color-primary);
 	font-size: clamp(1.4rem, 3vw, 2rem);
