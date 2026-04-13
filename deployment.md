@@ -7,8 +7,8 @@ This document describes our development and deployment workflow. A new team memb
 | Environment | Purpose | URL |
 |-------------|---------|-----|
 | Local | Active development | http://localhost:8080 |
-| Staging | Review before going live | [URL — fill in once AWS is set up] |
-| Production | Live public site | [URL — fill in once AWS is set up] |
+| Staging | Review before going live | http://209.38.23.24:8080 |
+| Production | Live public site | http://170.64.239.20:8080 |
 
 Changes flow: **Local → Staging → Production**. Never edit files directly on staging or production.
 

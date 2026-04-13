@@ -17,12 +17,9 @@ A custom WordPress website built for **Tennis Blast Kalynda Chase**, a tennis co
 |----------|-----|
 | GitHub Repository | https://github.com/cp3402-students/project-2026-jcua-team7 |
 | Project Board | https://trello.com/b/69bfd3fe/cp3402-2026-1-project |
-| Production site | [URL — fill in] |
-| Staging site | [URL — fill in] |
+| Production site | http://170.64.239.20:8080 |
+| Staging site | http://209.38.23.24:8080 |
 | Team channel | [Slack/Discord link — fill in] |
-
-Staging: http://209.38.23.24:8080/
-Production: http://170.64.239.20:8080/
 
 ## Client
 
@@ -47,9 +44,5 @@ cd project-2026-jcua-team7
 cp .env.example .env
 docker compose up -d
 ```
-## Contribution by Kirandeep Kaur
 
-- Joined GitHub repository and reviewed project setup
-- Checked Discord communication and team updates
-- Ready to contribute to content, design, and testing
 Then open http://localhost:8080 to complete the WordPress install and activate the **Tennis Blast** theme.
