@@ -19,7 +19,7 @@ A custom WordPress website built for **Tennis Blast Kalynda Chase**, a tennis co
 | Project Board | https://trello.com/b/69bfd3fe/cp3402-2026-1-project |
 | Production site | http://170.64.239.20:8080 |
 | Staging site | http://209.38.23.24:8080 |
-| Team channel | [Slack/Discord link — fill in] |
+| Team channel | [Discord](https://discord.com/channels/1485160318953848882/1485160319398707301) |
 
 ## Client
 
