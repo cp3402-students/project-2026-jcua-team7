@@ -1720,3 +1720,85 @@ a:active {
 		padding: 0;
 	}
 }
+
+/* Social Tennis page — fixtures, court hire, membership
+--------------------------------------------- */
+
+/* Section sub-headings (Court Hire, Club Membership, Social Tennis Fixtures) */
+.entry-content h3 {
+	border-left: 4px solid var(--color-accent);
+	color: var(--color-primary);
+	font-size: 1.35rem;
+	font-weight: 800;
+	margin-bottom: 1rem;
+	margin-top: 2.5rem;
+	padding-left: 0.75rem;
+}
+
+/* Full-width fixture/group images */
+.entry-content > figure.wp-block-image {
+	margin: 1.5rem 0;
+}
+
+.entry-content > figure.wp-block-image img {
+	border-radius: 8px;
+	display: block;
+	height: auto;
+	max-height: 480px;
+	object-fit: cover;
+	width: 100%;
+}
+
+/* Standalone tables (Court Hire rates, Membership tiers) */
+.entry-content .wp-block-table {
+	margin: 1.25rem 0 1.5rem;
+	overflow-x: auto;
+}
+
+.entry-content .wp-block-table table {
+	border-collapse: collapse;
+	font-size: 0.9rem;
+	min-width: 100%;
+}
+
+.entry-content .wp-block-table thead th {
+	background-color: var(--color-primary);
+	color: var(--color-text-light);
+	font-weight: 700;
+	padding: 0.65rem 1rem;
+	text-align: left;
+	white-space: nowrap;
+}
+
+.entry-content .wp-block-table tbody tr:nth-child(even) {
+	background-color: var(--color-bg-light);
+}
+
+.entry-content .wp-block-table tbody td {
+	border-bottom: 1px solid var(--color-border);
+	padding: 0.6rem 1rem;
+	vertical-align: middle;
+}
+
+/* Reset card look for column layouts inside entry-content
+   (front-page uses .home-content, not .entry-content, so no conflict) */
+.entry-content .wp-block-columns .wp-block-column {
+	background-color: transparent;
+	border-radius: 0;
+	overflow: visible;
+	padding: 0 0.75rem;
+}
+
+.entry-content .wp-block-columns .wp-block-column:first-child {
+	padding-left: 0;
+}
+
+.entry-content .wp-block-columns .wp-block-column:last-child {
+	padding-right: 0;
+}
+
+@media screen and (max-width: 600px) {
+	.entry-content > figure.wp-block-image img {
+		max-height: 260px;
+	}
+}
