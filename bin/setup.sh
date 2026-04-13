@@ -8,13 +8,19 @@ PROJECT_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 SQL_FILE="$PROJECT_ROOT/tennisblast-local.sql"
 WP_CLI_URL="https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar"
 WP_CLI_PHAR="$PROJECT_ROOT/wp-cli.phar"
-CONTAINER="groupassignment-wordpress-1"
+
+# Derive container names from docker compose — works regardless of folder name
+CONTAINER=$(docker compose -f "$PROJECT_ROOT/docker-compose.yml" ps -q wordpress 2>/dev/null | xargs docker inspect --format '{{.Name}}' 2>/dev/null | sed 's|/||')
+DB_CONTAINER=$(docker compose -f "$PROJECT_ROOT/docker-compose.yml" ps -q db 2>/dev/null | xargs docker inspect --format '{{.Name}}' 2>/dev/null | sed 's|/||')
 
 echo "→ Checking containers are running..."
-if ! docker ps --format '{{.Names}}' | grep -q "$CONTAINER"; then
+if [ -z "$CONTAINER" ]; then
   echo "  WordPress container not found. Run: docker compose up -d"
   exit 1
 fi
+
+echo "  WordPress container: $CONTAINER"
+echo "  DB container:        $DB_CONTAINER"
 
 echo "→ Waiting for WordPress to be ready..."
 until docker exec "$CONTAINER" bash -c "curl -s -o /dev/null http://localhost/wp-login.php" 2>/dev/null; do
@@ -22,13 +28,13 @@ until docker exec "$CONTAINER" bash -c "curl -s -o /dev/null http://localhost/wp
 done
 
 echo "→ Importing database..."
-docker exec -i groupassignment-db-1 \
+docker exec -i "$DB_CONTAINER" \
   mysql -u wordpress -pwordpress wordpress < "$SQL_FILE"
 
 echo "→ Downloading WP-CLI..."
 curl -sO "$WP_CLI_URL"
 chmod +x wp-cli.phar
-docker cp wp-cli.phar "$CONTAINER":/var/www/html/wp-cli.phar
+docker cp wp-cli.phar "$CONTAINER:/var/www/html/wp-cli.phar"
 rm -f wp-cli.phar
 
 echo "→ Activating theme..."
