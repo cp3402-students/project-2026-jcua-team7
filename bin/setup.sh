@@ -63,7 +63,7 @@ $existing_items = wp_get_nav_menu_items($primary);
 if ($existing_items) {
   foreach ($existing_items as $item) { wp_delete_post($item->ID, true); }
 }
-$ordered_slugs = ["home", "classes", "social-tennis", "contact"];
+$ordered_slugs = ["home", "classes", "social-tennis", "pro-shop", "venue-hire-events", "contact"];
 $position = 1;
 foreach ($ordered_slugs as $slug) {
   $page = get_page_by_path($slug);
