@@ -3,7 +3,7 @@ name: Deploy to DigitalOcean (Staging)
 on:
   push:
     branches:
-      - feature/github-actions-deploy
+      - staging
 
 jobs:
   deploy:
