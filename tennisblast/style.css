@@ -1609,3 +1609,42 @@ a:active {
 		padding: 2rem 1.5rem;
 	}
 }
+
+/* Social Tennis — fixture images side by side (#19)
+   Two consecutive wp-block-image figures float into a 2-column row.
+   The separator after them clears the float.
+--------------------------------------------- */
+.entry-content > figure.wp-block-image:has(+ figure.wp-block-image),
+.entry-content > figure.wp-block-image + figure.wp-block-image {
+	box-sizing: border-box;
+	float: left;
+	margin-bottom: 1rem;
+	width: calc(50% - 0.5rem);
+}
+
+.entry-content > figure.wp-block-image:has(+ figure.wp-block-image) {
+	margin-right: 1rem;
+}
+
+.entry-content > figure.wp-block-image:has(+ figure.wp-block-image) img,
+.entry-content > figure.wp-block-image + figure.wp-block-image img {
+	border-radius: 8px;
+	height: 280px;
+	object-fit: cover;
+	width: 100%;
+}
+
+/* Clear float after the image pair */
+.entry-content > .wp-block-separator,
+.entry-content > h3.wp-block-heading {
+	clear: both;
+}
+
+@media screen and (max-width: 640px) {
+	.entry-content > figure.wp-block-image:has(+ figure.wp-block-image),
+	.entry-content > figure.wp-block-image + figure.wp-block-image {
+		float: none;
+		margin-right: 0;
+		width: 100%;
+	}
+}
