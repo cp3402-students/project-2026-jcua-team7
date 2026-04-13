@@ -1381,7 +1381,7 @@ a:active {
 }
 
 .btn-hero {
-	background-color: var(--color-accent);
+	background-color: var(--color-cta);
 	border-radius: 4px;
 	color: var(--color-text-light) !important;
 	display: inline-block;
@@ -1396,12 +1396,34 @@ a:active {
 
 .btn-hero:hover,
 .btn-hero:focus {
-	background-color: var(--color-accent-dark);
+	background-color: var(--color-cta-hover);
 	color: var(--color-text-light) !important;
 	transform: translateY(-2px);
 }
 
-/* Home page content (coaches, about, etc.)
+/* WordPress block buttons — site-wide */
+.wp-block-button__link,
+.wp-element-button {
+	background-color: var(--color-cta) !important;
+	border-radius: 4px !important;
+	color: var(--color-text-light) !important;
+	font-weight: 700 !important;
+	letter-spacing: 0.5px;
+	padding: 0.75rem 1.75rem !important;
+	text-transform: uppercase;
+	transition: background-color 0.2s, transform 0.15s;
+}
+
+.wp-block-button__link:hover,
+.wp-block-button__link:focus,
+.wp-element-button:hover,
+.wp-element-button:focus {
+	background-color: var(--color-cta-hover) !important;
+	color: var(--color-text-light) !important;
+	transform: translateY(-2px);
+}
+
+/* Home page content
 --------------------------------------------- */
 .home-content {
 	padding: 4rem 1.5rem;
@@ -1410,6 +1432,115 @@ a:active {
 .home-content-inner {
 	max-width: var(--max-width);
 	margin: 0 auto;
+}
+
+/* Home — Intro section */
+.home-intro {
+	background-color: var(--color-bg-light);
+	padding: 4rem 1.5rem !important;
+	text-align: center;
+}
+
+.home-intro h2 {
+	color: var(--color-primary);
+	font-size: 2rem;
+	margin-bottom: 1rem;
+}
+
+.home-intro p {
+	color: var(--color-text);
+	font-size: 1.1rem;
+	line-height: 1.8;
+	margin: 0 auto;
+	max-width: 780px;
+}
+
+/* Home — Coaches section */
+.home-coaches {
+	padding: 5rem 1.5rem !important;
+}
+
+.home-coaches h2 {
+	color: var(--color-primary);
+	font-size: 2rem;
+	margin-bottom: 0.5rem;
+}
+
+.home-coaches > .wp-block-group > p {
+	color: var(--color-text);
+	margin-bottom: 3rem;
+}
+
+/* Coach card — each column inside coaches section */
+.home-coaches .wp-block-columns {
+	gap: 2rem;
+	margin-bottom: 2rem !important;
+}
+
+.home-coaches .wp-block-column {
+	background-color: var(--color-bg-light);
+	border-radius: 8px;
+	overflow: hidden;
+	padding: 0 0 1.5rem !important;
+	text-align: center;
+	transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.home-coaches .wp-block-column:hover {
+	box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+	transform: translateY(-3px);
+}
+
+/* Coach photo — full-width top of card */
+.home-coaches .coach-photo {
+	margin: 0 !important;
+	width: 100%;
+}
+
+.home-coaches .coach-photo img {
+	aspect-ratio: 3 / 4;
+	display: block;
+	height: 280px;
+	object-fit: cover;
+	object-position: top;
+	width: 100%;
+}
+
+/* Coach name */
+.home-coaches .wp-block-column h3 {
+	color: var(--color-primary);
+	font-size: 1.1rem;
+	margin: 1.25rem 1rem 0.5rem;
+}
+
+/* Coach bio */
+.home-coaches .wp-block-column p {
+	color: var(--color-text);
+	font-size: 0.9rem;
+	line-height: 1.6;
+	margin: 0 1rem 0.75rem;
+}
+
+/* Coach contact line */
+.home-coaches .wp-block-column p:last-child {
+	color: var(--color-primary);
+	font-size: 0.875rem;
+	font-weight: 600;
+	margin-top: auto;
+}
+
+@media screen and (max-width: 768px) {
+	.home-intro h2 {
+		font-size: 1.5rem;
+	}
+
+	.home-coaches .wp-block-columns {
+		flex-direction: column;
+	}
+
+	.home-coaches .coach-photo img {
+		height: 240px;
+	}
 }
 
 /* Court Booking CTA Strip
