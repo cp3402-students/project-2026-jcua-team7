@@ -1363,13 +1363,14 @@ a:active {
 
 .hero-tagline {
 	color: var(--color-text-light);
-	font-size: clamp(1.8rem, 5vw, 3rem);
+	font-size: clamp(1.5rem, 4vw, 2.5rem);
 	font-weight: 800;
 	letter-spacing: 2px;
 	line-height: 1.2;
 	margin: 0 0 1.25rem;
 	text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 	text-transform: uppercase;
+	white-space: nowrap;
 }
 
 .hero-subtitle {
