@@ -1412,6 +1412,49 @@ a:active {
 	margin: 0 auto;
 }
 
+/* Coaches grid — card layout */
+.home-coaches .wp-block-columns {
+	align-items: stretch;
+	gap: 1.5rem;
+}
+
+.home-coaches .wp-block-column {
+	background-color: var(--color-bg-light);
+	border-radius: 8px;
+	overflow: hidden;
+	padding: 0 0 1.5rem;
+	text-align: center;
+}
+
+/* Fix #12 — uniform coach photo crop (3:4 portrait, face-aligned) */
+.coach-photo {
+	aspect-ratio: 3 / 4;
+	margin: 0;
+	overflow: hidden;
+}
+
+.coach-photo img {
+	display: block;
+	height: 100%;
+	object-fit: cover;
+	object-position: top center;
+	width: 100%;
+}
+
+.home-coaches .wp-block-column h3 {
+	color: var(--color-primary);
+	font-size: 1.05rem;
+	margin: 1rem 0 0.4rem;
+	padding: 0 1rem;
+}
+
+.home-coaches .wp-block-column p {
+	font-size: 0.875rem;
+	line-height: 1.6;
+	margin: 0 0 0.5rem;
+	padding: 0 1rem;
+}
+
 /* Court Booking CTA Strip
 --------------------------------------------- */
 .cta-strip {
