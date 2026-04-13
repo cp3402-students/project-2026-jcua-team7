@@ -386,6 +386,12 @@ template {
 
 html {
 	box-sizing: border-box;
+	height: 100%;
+	background-color: #0f2410;
+}
+
+body {
+	min-height: 100%;
 }
 
 /*--------------------------------------------------------------
@@ -972,11 +978,25 @@ textarea {
 
 /* Design Tokens
 --------------------------------------------- */
+/*
+ * Brand palette derived from the Tennis Blast logo and client signage.
+ *
+ * primary       — dark forest green from the "TENNIS BLAST" logo wordmark
+ * accent        — lime green from the logo swoosh gradient highlight
+ * accent-dark   — deeper lime for hover states
+ * cta           — red from the Head Coach shirt and brand signage starburst
+ * cta-hover     — darker red for button hover
+ * gold          — yellow/gold from the signage background burst
+ * header-bg     — near-black green for header and footer (dark version of primary)
+ */
 :root {
-	--color-primary:    #1e5631;   /* dark green */
-	--color-accent:     #4caf50;   /* mid green — CTAs, hover */
-	--color-accent-dark:#388e3c;   /* darker green — button hover */
-	--color-header-bg:  #1a2e3a;   /* dark navy — header background */
+	--color-primary:    #1b4d1b;   /* dark forest green — logo wordmark */
+	--color-accent:     #6cc44a;   /* lime green — logo swoosh highlight */
+	--color-accent-dark:#4ea032;   /* deeper lime — hover states */
+	--color-cta:        #c0392b;   /* red — CTAs, primary action buttons */
+	--color-cta-hover:  #962d22;   /* dark red — CTA hover */
+	--color-gold:       #f5c518;   /* gold — highlight, badges */
+	--color-header-bg:  #0f2410;   /* near-black green — header and footer */
 	--color-text:       #2c2c2c;
 	--color-text-light: #ffffff;
 	--color-bg-light:   #f5f5f5;
@@ -1167,31 +1187,35 @@ a:active {
 		display: block;
 	}
 
+	/* Keep the nav in the header flex row so the button stays visible.
+	   Only the <ul> drops down, not the whole <nav>. */
 	.main-navigation {
-		background-color: var(--color-header-bg);
-		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
-		flex-direction: column;
-		align-items: stretch;
+		align-items: center;
+		background-color: transparent;
+		box-shadow: none;
+		flex-direction: row;
 		gap: 0;
-		left: 0;
-		max-height: 0;
-		overflow: hidden;
-		padding: 0 1.5rem;
-		position: absolute;
-		right: 0;
-		top: var(--header-height);
-		transition: max-height 0.3s ease, padding 0.3s ease;
-	}
-
-	.main-navigation.toggled {
-		max-height: 400px;
-		padding: 0.75rem 1.5rem 1rem;
+		padding: 0;
+		position: static;
 	}
 
 	.main-navigation ul {
+		background-color: var(--color-header-bg);
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+		display: none;
 		flex-direction: column;
 		gap: 0;
+		left: 0;
+		padding: 0.75rem 1.5rem 1rem;
+		position: absolute;
+		right: 0;
+		top: var(--header-height);
 		width: 100%;
+		z-index: 100;
+	}
+
+	.main-navigation.toggled ul {
+		display: flex;
 	}
 
 	.main-navigation ul li a {
@@ -1200,10 +1224,9 @@ a:active {
 		padding: 0.65rem 0;
 	}
 
-	.btn-book-court {
-		display: block;
-		margin-top: 0.75rem;
-		text-align: center;
+	/* Hide the Book a Court button in the nav on mobile — available via Contact page */
+	.main-navigation .btn-book-court {
+		display: none;
 	}
 
 	.site-header {
@@ -1265,16 +1288,11 @@ a:active {
 	margin: 0;
 }
 
-.entry-content h2 {
-	color: var(--color-primary);
-	font-size: 1.6rem;
-	margin-top: 2.5rem;
+.entry-content > *:last-child {
+	margin-bottom: 0;
 }
 
-.entry-content h3 {
-	color: var(--color-header-bg);
-	font-size: 1.2rem;
-}
+/* entry-content h2 and h3 base styles are further down, scoped per page type */
 
 .entry-content img {
 	border-radius: 6px;
@@ -1310,10 +1328,49 @@ a:active {
 	margin-top: 0;
 }
 
+/* Contact page — right column (booking + sponsors) — issue #17
+--------------------------------------------- */
+
+/* Visual divider before Sponsors heading */
+.entry-content .wp-block-columns .wp-block-column:has(.wp-block-buttons) .wp-block-buttons + h3.wp-block-heading {
+	border-top: 2px solid var(--color-border);
+	margin-top: 1.5rem;
+	padding-top: 1.5rem;
+}
+
+/* Sponsor list: remove default bullets and stack items */
+.entry-content .wp-block-columns .wp-block-column:has(.wp-block-buttons) .wp-block-list {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+/* Sponsor links: styled as partner badges */
+.entry-content .wp-block-columns .wp-block-column:has(.wp-block-buttons) .wp-block-list li a {
+	background-color: #ffffff;
+	border: 2px solid var(--color-border);
+	border-left: 4px solid var(--color-accent);
+	border-radius: 6px;
+	color: var(--color-primary);
+	display: block;
+	font-weight: 700;
+	padding: 0.65rem 1rem;
+	text-decoration: none;
+	transition: border-color 0.2s, color 0.2s;
+}
+
+.entry-content .wp-block-columns .wp-block-column:has(.wp-block-buttons) .wp-block-list li a:hover {
+	border-left-color: var(--color-primary);
+	color: var(--color-accent-dark);
+}
+
 /* WordPress block: separator
 --------------------------------------------- */
 .entry-content .wp-block-separator {
-	border-color: var(--color-border);
+	border: none;
 	margin: 2.5rem 0;
 }
 
@@ -1349,13 +1406,14 @@ a:active {
 
 .hero-tagline {
 	color: var(--color-text-light);
-	font-size: clamp(1.8rem, 5vw, 3rem);
+	font-size: clamp(1.5rem, 4vw, 2.5rem);
 	font-weight: 800;
 	letter-spacing: 2px;
 	line-height: 1.2;
 	margin: 0 0 1.25rem;
 	text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 	text-transform: uppercase;
+	white-space: nowrap;
 }
 
 .hero-subtitle {
@@ -1387,6 +1445,15 @@ a:active {
 	transform: translateY(-2px);
 }
 
+/* WordPress block buttons — fix low-contrast text (#15)
+   Default WP button text inherits the theme link colour (dark green) which is
+   unreadable on the default dark-grey button background. Force white text only.
+--------------------------------------------- */
+.wp-block-button__link,
+.wp-element-button {
+	color: var(--color-text-light) !important;
+}
+
 /* Home page content (coaches, about, etc.)
 --------------------------------------------- */
 .home-content {
@@ -1396,6 +1463,49 @@ a:active {
 .home-content-inner {
 	max-width: var(--max-width);
 	margin: 0 auto;
+}
+
+/* Coaches grid — card layout */
+.home-coaches .wp-block-columns {
+	align-items: stretch;
+	gap: 1.5rem;
+}
+
+.home-coaches .wp-block-column {
+	background-color: var(--color-bg-light);
+	border-radius: 8px;
+	overflow: hidden;
+	padding: 0 0 1.5rem;
+	text-align: center;
+}
+
+/* Fix #12 — uniform coach photo crop (3:4 portrait, face-aligned) */
+.coach-photo {
+	aspect-ratio: 3 / 4;
+	margin: 0;
+	overflow: hidden;
+}
+
+.coach-photo img {
+	display: block;
+	height: 100%;
+	object-fit: cover;
+	object-position: top center;
+	width: 100%;
+}
+
+.home-coaches .wp-block-column h3 {
+	color: var(--color-primary);
+	font-size: 1.05rem;
+	margin: 1rem 0 0.4rem;
+	padding: 0 1rem;
+}
+
+.home-coaches .wp-block-column p {
+	font-size: 0.875rem;
+	line-height: 1.6;
+	margin: 0 0 0.5rem;
+	padding: 0 1rem;
 }
 
 /* Court Booking CTA Strip
@@ -1593,5 +1703,237 @@ a:active {
 		grid-template-columns: 1fr;
 		gap: 2rem;
 		padding: 2rem 1.5rem;
+	}
+}
+
+/* Classes page — program sections
+--------------------------------------------- */
+
+/* Page call-to-action h2 ("GET INVOLVED! THE COURT IS CALLING", "GET YOUR RACQUET ON!") */
+.entry-content > h2.wp-block-heading {
+	border-bottom: 4px solid var(--color-gold);
+	color: var(--color-primary);
+	font-size: clamp(1.4rem, 3vw, 2rem);
+	font-weight: 800;
+	letter-spacing: 1px;
+	margin-bottom: 2.5rem;
+	padding-bottom: 0.75rem;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+/* Reset the generic column card look inside program sections */
+.program-section .wp-block-column {
+	background-color: transparent;
+	border-radius: 0;
+	overflow: visible;
+	padding: 0 1.25rem;
+}
+
+/* Image column — no side padding, image fills the column */
+.program-section .wp-block-column:has(.wp-block-image) {
+	padding: 0;
+}
+
+.program-section .wp-block-image {
+	margin: 0;
+}
+
+.program-section .wp-block-image img {
+	border-radius: 8px;
+	display: block;
+	height: 320px;
+	margin-bottom: 0;
+	max-height: none;
+	object-fit: cover;
+	width: 100%;
+}
+
+/* Program section heading */
+.program-section h3 {
+	border-bottom: 3px solid var(--color-accent);
+	color: var(--color-primary);
+	display: inline-block;
+	font-size: 1.4rem;
+	font-weight: 800;
+	margin-bottom: 1rem;
+	margin-top: 0;
+	padding-bottom: 0.4rem;
+}
+
+/* Bullet list within program sections */
+.program-section .wp-block-list {
+	margin: 0 0 1rem;
+	padding-left: 1.5rem;
+}
+
+.program-section .wp-block-list li {
+	line-height: 1.6;
+	margin-bottom: 0.35rem;
+}
+
+/* Pricing table */
+.program-section .wp-block-table {
+	margin: 1.25rem 0;
+	overflow-x: auto;
+}
+
+.program-section .wp-block-table table {
+	border-collapse: collapse;
+	font-size: 0.9rem;
+	width: 100%;
+}
+
+.program-section .wp-block-table thead th {
+	background-color: var(--color-primary);
+	color: var(--color-text-light);
+	font-weight: 700;
+	padding: 0.6rem 1rem;
+	text-align: left;
+}
+
+.program-section .wp-block-table tbody tr:nth-child(even) {
+	background-color: var(--color-bg-light);
+}
+
+.program-section .wp-block-table tbody td {
+	border-bottom: 1px solid var(--color-border);
+	padding: 0.6rem 1rem;
+}
+
+/* Separator between program sections */
+.entry-content .wp-block-separator {
+	border: none;
+	margin: 0.5rem 0 0;
+}
+
+@media screen and (max-width: 768px) {
+	.program-section .wp-block-image img {
+		height: 220px;
+	}
+
+	.program-section .wp-block-column {
+		padding: 0;
+	}
+}
+
+/* Social Tennis page — fixtures, court hire, membership
+--------------------------------------------- */
+
+/* Section sub-headings (Court Hire, Club Membership, Social Tennis Fixtures) */
+.entry-content h3 {
+	border-left: 4px solid var(--color-accent);
+	color: var(--color-primary);
+	font-size: 1.35rem;
+	font-weight: 800;
+	margin-bottom: 1rem;
+	margin-top: 2.5rem;
+	padding-left: 0.75rem;
+}
+
+/* Full-width fixture/group images */
+.entry-content > figure.wp-block-image {
+	margin: 1.5rem 0;
+}
+
+.entry-content > figure.wp-block-image img {
+	border-radius: 8px;
+	display: block;
+	height: auto;
+	max-height: 480px;
+	object-fit: cover;
+	width: 100%;
+}
+
+/* Standalone tables (Court Hire rates, Membership tiers) */
+.entry-content .wp-block-table {
+	margin: 1.25rem 0 1.5rem;
+	overflow-x: auto;
+}
+
+.entry-content .wp-block-table table {
+	border-collapse: collapse;
+	font-size: 0.9rem;
+	min-width: 100%;
+}
+
+.entry-content .wp-block-table thead th {
+	background-color: var(--color-primary);
+	color: var(--color-text-light);
+	font-weight: 700;
+	padding: 0.65rem 1rem;
+	text-align: left;
+	white-space: nowrap;
+}
+
+.entry-content .wp-block-table tbody tr:nth-child(even) {
+	background-color: var(--color-bg-light);
+}
+
+.entry-content .wp-block-table tbody td {
+	border-bottom: 1px solid var(--color-border);
+	padding: 0.6rem 1rem;
+	vertical-align: middle;
+}
+
+/* Reset card look for column layouts inside entry-content
+   (front-page uses .home-content, not .entry-content, so no conflict) */
+.entry-content .wp-block-columns .wp-block-column {
+	background-color: transparent;
+	border-radius: 0;
+	overflow: visible;
+	padding: 0 0.75rem;
+}
+
+.entry-content .wp-block-columns .wp-block-column:first-child {
+	padding-left: 0;
+}
+
+.entry-content .wp-block-columns .wp-block-column:last-child {
+	padding-right: 0;
+}
+
+@media screen and (max-width: 600px) {
+	.entry-content > figure.wp-block-image img {
+		max-height: 260px;
+	}
+}
+
+/* Social Tennis — fixture images side by side (#19)
+   Two consecutive wp-block-image figures float into a 2-column row.
+   The separator after them clears the float.
+--------------------------------------------- */
+.entry-content > figure.wp-block-image:has(+ figure.wp-block-image),
+.entry-content > figure.wp-block-image + figure.wp-block-image {
+	box-sizing: border-box;
+	float: left;
+	margin-bottom: 1rem;
+	width: calc(50% - 0.5rem);
+}
+
+.entry-content > figure.wp-block-image:has(+ figure.wp-block-image) {
+	margin-right: 1rem;
+}
+
+.entry-content > figure.wp-block-image:has(+ figure.wp-block-image) img,
+.entry-content > figure.wp-block-image + figure.wp-block-image img {
+	border-radius: 8px;
+	height: 280px;
+	object-fit: cover;
+	width: 100%;
+}
+
+/* Clear float after the image pair */
+.entry-content > .wp-block-separator,
+.entry-content > h3.wp-block-heading {
+	clear: both;
+}
+
+@media screen and (max-width: 640px) {
+	.entry-content > figure.wp-block-image:has(+ figure.wp-block-image),
+	.entry-content > figure.wp-block-image + figure.wp-block-image {
+		float: none;
+		margin-right: 0;
+		width: 100%;
 	}
 }
